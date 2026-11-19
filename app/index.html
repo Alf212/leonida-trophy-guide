@@ -3,23 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Trophy Guide — GTA VI Platinum Tracker</title>
+<meta name="description" content="Offline guide and tracker for all 55 GTA VI PlayStation 5 trophies: official names, descriptions and grades, original cited guides, missable flags and a 6-stage platinum roadmap.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="hero">
+  <div>
+    <p class="kicker">LEONIDA &middot; OFFLINE GUIDE + TRACKER</p>
+    <h1>Leonida Trophy Guide</h1>
+    <p class="sub">All 55 PlayStation 5 trophies for Grand Theft Auto VI — official names, descriptions and grades, an original guide for each one with named sources, a 6-stage roadmap to the platinum, and a checklist that saves on this device. No online trophies. No difficulty trophies. Story runs about 50–80 hours; the platinum is a 200-hour-plus run.</p>
+  </div>
+  <div class="progress-card">
+    <p id="progress-text" class="progress-text">0 of 55 earned</p>
+    <div class="bar"><div id="progress-bar" class="bar-fill"></div></div>
+    <p id="grade-counts" class="grade-counts"></p>
+    <p class="save-note">Progress saves automatically in this browser (localStorage). Export a backup file any time.</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
-<script type="module" src="app.js"></script>
+
+<nav class="toolbar" aria-label="Views">
+  <a href="#/list" class="view-link">Checklist</a>
+  <a href="#/roadmap" class="view-link">Roadmap</a>
+  <a href="#/list?filter=missable" class="view-link">Missables only</a>
+  <label class="spoiler-toggle">Spoilers
+    <select id="spoiler-select">
+      <option value="on" selected>ON — story names hidden</option>
+      <option value="off">OFF — show everything</option>
+    </select>
+  </label>
+</nav>
+
+<section id="controls" class="controls" aria-label="Filters">
+  <input id="search" type="search" placeholder="Search name or description…" aria-label="Search trophies">
+  <div id="kind-chips" class="chips" role="group" aria-label="Filter by kind">
+    <button type="button" data-kind="all" class="chip active">All</button>
+    <button type="button" data-kind="story" class="chip">Story</button>
+    <button type="button" data-kind="strangers" class="chip">Strangers</button>
+    <button type="button" data-kind="collectibles" class="chip">Collectibles</button>
+    <button type="button" data-kind="activities" class="chip">Activities</button>
+    <button type="button" data-kind="world" class="chip">World</button>
+    <button type="button" data-kind="platinum" class="chip">Platinum</button>
+  </div>
+  <label>Grade
+    <select id="grade-filter">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="check"><input id="missable-only" type="checkbox"> ⚠ Missable only</label>
+  <label>Status
+    <select id="status-filter">
+      <option value="all">All</option>
+      <option value="earned">Earned</option>
+      <option value="remaining">Remaining</option>
+    </select>
+  </label>
+  <button id="export-btn" type="button">Export progress (JSON)</button>
+  <label class="import-btn">Import progress <input id="import-input" type="file" accept="application/json,.json"></label>
+  <p id="showing" class="showing"></p>
+</section>
+
+<main class="layout">
+  <section aria-label="Trophy checklist">
+    <ul id="trophy-list" class="trophy-list"></ul>
+    <p id="empty-note" class="empty-note" hidden>No trophies match these filters. Loosen the search or clear a filter.</p>
+  </section>
+  <aside id="detail" class="detail" aria-label="Trophy guide detail">
+    <p class="detail-hint">Select any trophy to read its full guide here — what to do, its target count if it has one, its missable warning, and the named sources the guide is built from. Every trophy has its own link too, like #/trophy/17, and the roadmap lives at #/roadmap.</p>
+  </aside>
+</main>
+
+<section id="roadmap" class="roadmap" aria-label="Roadmap to the platinum">
+  <h2>Roadmap to the Platinum</h2>
+  <p class="roadmap-intro">Six stages, in order. Stage 0 is setup and protects everything after it. The order follows the structure the sources describe: story first because it unlocks the map, the partner and the 100% checklist; strands and activities while the world is fresh; collectibles and crime next; completion and the platinum last.</p>
+  <div id="roadmap-stages"></div>
+</section>
+
+<footer>
+  <p>Original guide text written for this entry. Official trophy names, descriptions and grades are as PlayStation publishes them. Every guide cites its sources by name and link in the detail panel — the app itself fetches nothing and works fully offline. No Rockstar Games logo or artwork is used; the neon-Leonida look is this guide's own.</p>
+</footer>
+<script src="app.js"></script>
 </body>
 </html>
